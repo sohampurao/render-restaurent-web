@@ -15,6 +15,7 @@ import cocktailRouter from './routers/menuRouters/cocktailRouter.js';
 import dessertRouter from './routers/menuRouters/dessertRouter.js';
 import orderRouter from './routers/OrderRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
+import path from 'path';
 
 dotenv.config();
 
@@ -63,6 +64,11 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.get('/', (req, res) => {
   res.send('Server is ready');
 });
+
+app.use(express.static(path.join(__dirname, '/frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+);
 
 //shows the error message if email is duplicated in the sever
 app.use((err, req, res, next) => {
