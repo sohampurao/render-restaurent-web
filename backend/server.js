@@ -15,7 +15,6 @@ import cocktailRouter from './routers/menuRouters/cocktailRouter.js';
 import dessertRouter from './routers/menuRouters/dessertRouter.js';
 import orderRouter from './routers/OrderRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
-import path from 'path';
 
 dotenv.config();
 
@@ -24,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //add our data to local mongo database
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://0.0.0.0/restaurent-web');
+mongoose.connect(process.env.MONGODB_URL);
 
 app.use('/api/uploads', uploadRouter);
 
